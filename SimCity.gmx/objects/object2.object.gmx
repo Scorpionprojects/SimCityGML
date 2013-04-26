@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.construct = 0;
+            <string>global.construct = 0; //test
+
 </string>
           </argument>
         </arguments>
