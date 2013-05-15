@@ -25,7 +25,7 @@
     <object>objects\object6</object>
     <object>objects\object7</object>
     <object>objects\object8</object>
-    <object>objects\scout</object>
+    <object>objects\scout_i</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

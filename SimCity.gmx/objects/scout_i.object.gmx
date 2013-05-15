@@ -25,9 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!variable_local_exists("origin_x") || !variable_local_exists("origin_y")){
-    
-}
+            <string>origin_x = 0;
+origin_y = 0;
 </string>
           </argument>
         </arguments>
@@ -171,45 +170,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (distance_to_object(instance_nearest(x,y,destination)) &gt; sqrt(2)*32 &amp;&amp; owner.destination_exists != true){
-instance_create(x+32,y,scout);
-with (other){
+            <string>if (distance_to_object(instance_nearest(x,y,object5)) &gt; sqrt(2)*32 //if not there yet
+&amp;&amp; owner.destination_exists != true){//and owner doesn't know yet whether shop is connected
+if (self.x = instance_nearest(x,y,object0) &amp;&amp; self.y = instance_nearest(x,y,object0)){//and if road is not there
+instance_create(x,y-32,scout);//place new scout there
+with (other){//add variables
     previous_x = other.x;  
     previous_y = other.y;  
     origin_x = other.previous_x;
     origin_y = other.previous_y;
     owner = other.owner;
-}
-instance_create(x-32,y,scout);
-with (other){
-    previous_x = other.x;  
-    previous_y = other.y;  
-    origin_x = other.previous_x;
-    origin_y = other.previous_y;
-    owner = other.owner;
-}
-instance_create(x,y+32,scout);
-with (other){
-    previous_x = other.x;  
-    previous_y = other.y;  
-    origin_x = other.previous_x;
-    origin_y = other.previous_y;
-    owner = other.owner;
-}
-instance_create(x,y-32,scout);
-with (other){
-    previous_x = other.x;  
-    previous_y = other.y;  
-    origin_x = other.previous_x;
-    origin_y = other.previous_y;
-    owner = other.owner;
-}}
-else {
+}}}else{//if no road left
     with (owner){
-        destination_exists = true;
+        destination_exists = true;//tell owner that shop is connected
     }
 }
-instance_destroy();
+instance_destroy();//always destroy
 </string>
           </argument>
         </arguments>

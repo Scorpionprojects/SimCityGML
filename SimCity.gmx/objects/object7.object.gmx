@@ -78,8 +78,8 @@ if (distance_to_object(instance_nearest(x,y,object5)) &gt; 512){
             <string>destination_exists = false;
 road_x = instance_nearest(x,y,object0).x;
 road_y = instance_nearest(x,y,object0).y;
-instance_create(road_x,road_y,scout);
-with (other){
+new_scout = instance_create(road_x,road_y,scout_i);
+with (new_scout){
     previous_x = x;
     previous_y = y;
     origin_x = 0;
