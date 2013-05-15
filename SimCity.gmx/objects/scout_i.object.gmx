@@ -8,131 +8,9 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>origin_x = 0;
-origin_y = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>403</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>-1</relative>
-        <isnot>-1</isnot>
-        <arguments>
-          <argument>
-            <kind>10</kind>
-            <object>object0</object>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>421</id>
-        <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -147,62 +25,47 @@ origin_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (x = origin_x &amp;&amp; y = origin_y){
-    instance_destroy();
+            <string>if owner.destination_exists = true//if other scout found shop
+{instance_destroy();//Save memory
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (distance_to_object(instance_nearest(x,y,object5)) &gt; sqrt(2)*32 //if not there yet
-&amp;&amp; owner.destination_exists != true){//and owner doesn't know yet whether shop is connected
-if (self.x = instance_nearest(x,y,object0) &amp;&amp; self.y = instance_nearest(x,y,object0)){//and if road is not there
-instance_create(x,y-32,scout);//place new scout there
-with (other){//add variables
-    previous_x = other.x;  
-    previous_y = other.y;  
-    origin_x = other.previous_x;
-    origin_y = other.previous_y;
-    owner = other.owner;
-}}}else{//if no road left
-    with (owner){
-        destination_exists = true;//tell owner that shop is connected
+if (distance_to_object(instance_nearest(x,y,object5)) &gt; sqrt(2)*32 //If not there yet
+&amp;&amp; owner.destination_exists != true){//And owner doesn't know yet whether shop is connected
+    if (self.x+32 = instance_nearest(x,y,object0) &amp;&amp; self.y = instance_nearest(x,y,object0)){//If road is right
+        instance_create(x+32,y,scout);//Place new scout right
+        with (other){//Add variable
+            owner = other.owner;
+        }
+    }
+    if (self.x-32 = instance_nearest(x,y,object0) &amp;&amp; self.y = instance_nearest(x,y,object0)){//if road is left
+        instance_create(x-32,y,scout);//Place new scout left
+        with (other){//Add variable
+            owner = other.owner;
+        }
+    }
+    if (self.x = instance_nearest(x,y,object0) &amp;&amp; self.y+32 = instance_nearest(x,y,object0)){//If road is down
+        instance_create(x,y+32,scout);//Place new scout down
+        with (other){//Add variable
+            owner = other.owner;
+        }
+    }
+    if (self.x = instance_nearest(x,y,object0) &amp;&amp; self.y-32 = instance_nearest(x,y,object0)){//If road is up
+        instance_create(x,y-32,scout);//Place new scout up
+        with (other){//Add variable
+            owner = other.owner;
+        }
     }
 }
-instance_destroy();//always destroy
+else{//If no road left
+    with (owner){
+        destination_exists = true;//Tell owner that shop is connected
+        show_message("Shop is connected.");//Tell the player that shop is connected
+    }
+}
+instance_destroy();//Save memory
+//Never use flexible instance-cross-over variable techniques in GML Studio. NEVER!
 </string>
           </argument>
         </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
   </events>

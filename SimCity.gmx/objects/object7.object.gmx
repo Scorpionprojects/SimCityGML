@@ -80,12 +80,7 @@ road_x = instance_nearest(x,y,object0).x;
 road_y = instance_nearest(x,y,object0).y;
 new_scout = instance_create(road_x,road_y,scout_i);
 with (new_scout){
-    previous_x = x;
-    previous_y = y;
-    origin_x = 0;
-    origin_y = 0;
     owner = other.id;
-    destination = object5;
 }
 </string>
           </argument>
